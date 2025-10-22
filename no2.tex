@@ -1,0 +1,72 @@
+Given the following regression model:
+$$
+RPmsoft_t = \beta_1 + \beta_2RPsandp_t + \beta_3 Dprod_t + \beta_4Dinflation_t + \beta_5Dterm_t + \beta_6m1_t + \epsilon_t
+$$
+
+where 
+\begin{itemize}[label=(alpha*)]
+    \item[-] $RPmsoft_t$ is the excess return of the Microsoft stock,
+    \item[-] $RPsandp_t$ is the risk premium of the S\&P 500 index,
+    \item[-] $Dprod_t$ is the change in production,
+    \item[-] $Dinflation_t$ is the change in inflation,
+    \item[-] $Dterm_t$ is the change in term structure,
+    \item[-] $m1_t$ is the money supply growth,
+    \item[-] $\epsilon_t$ is the error term.
+\end{itemize}
+
+\subsection{}
+Using the data microsoft.csv, the resulting regression model is as follows:
+
+$$
+\widehat{RPmsoft_t} = -0.9291 + 1.3232RPsandp_t -1.5216Dprod_t + 0.4716Dinflation_t + 4.1588Dterm_t + 5.4352m1_t 
+$$
+
+\begin{center}
+\fbox{
+\includegraphics[width=12cm]{fig/2a.png}
+}
+\end{center}
+
+\subsection{}
+To test the \textit{January effect} which is that on avereage, every else equal, the returns (or excess returns) are larger in the month of January than the rest of the months, we set-up the following hypothesis test:
+
+$$
+H_0: \beta_6 = 0 \quad \text{(No January effect)} \quad vs \quad
+H_a: \beta_6 > 0 \quad \text{(January effect exists and is positive)}
+$$
+
+where $\beta_6$ is the estimated coefficient for the regressor $m1$ which is a 1 for January and 0 otherwise. 
+
+\medskip 
+
+From there OLS regression results, we have $t-value = 1.89$. At $\alpha=1\%$ and degrees of freedom  $n-K = 324 - 6 = 298$, the $t-critical_{0.01}(298) = 2.339$. Because $t-value < t-critical$, we fail to reject the null hypothesis. That is, the data does not provide evidence to reject the claim that there is no January effect in the excess returns of Microsoft stock.
+
+\subsection{}
+
+The starting point for use of the $t-test$ statistic is the (conditional) sampling distribution of the $\hat{\beta}_k$ which is derived from the classifical assumptions plus normality. Thus, the assumptions other than normality are:
+
+\begin{enumerate}[label=(A\arabic*)]
+    \item Linearity: The regression model has been correctly specified such that $y = X\beta + \epsilon$ 
+    \item Strict exogeneity: The error term has an expected value of zero given any values of the regressors in all time periods, i.e. $E(\epsilon_i | X) = 0$ for all $i$.
+    \item Homoskedasticity: The variance of the error term is constant across all levels of the regressors, i.e. $Var(\epsilon_i | X) = \sigma^2$ for all $i$.
+    \item Disturbances are uncorrelated: The error terms are uncorrelated across observations,
+    i.e. \\ $Cov(\epsilon_i, \epsilon_j | X) = 0$ for all $i \neq j$.
+\end{enumerate} 
+
+In addition, to derive the distribution of the $t-test$ statistic, we used 
+
+$$\dfrac{\hat{\beta_k} - r}{\sqrt{\sigma^2(X'X)^{-1}_{kk}}} \quad \underset{\text{under }H_0}{\sim} \quad  N(0,1)$$
+
+where $r$ is the value of $\beta_k$ under the null hypothesis. Thus, the distribution of the $t-test$ statistic is derived under the assumption that $H_0$ is true.
+
+\subsection{}
+
+The $Jarque-Bera$ (JB) test can be used to check for normality of the distrubances. The JB-test statistic is given by:
+$$JB = \dfrac{n}{6} \left( sk^2 + \dfrac{(kur-3)^2}{4} \right) \quad \overset{a}{\underset{\text{under }H_0}{\sim}} \quad X^2(2)$$
+where $sk$ is the sample coefficient of the skwness of the variable, $kur$ is its sample coefficient of kurtosis, and $n$ is the sample size. Using significance of level of $\alpha = 0.01$ and the critical value $X^2_{0.01}(2) = 9.21$. The acceptance and rejection regions are in the illustration below:
+
+\begin{center}
+\fbox{
+\includegraphics[width=12cm]{fig/2d.png}
+}
+\end{center}

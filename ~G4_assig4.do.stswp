@@ -1,0 +1,3 @@
+import delimited "/Users/cherrylchico/Desktop/BSE/Foundations of Econometricts/hw4/microsoft.csv"
+
+reg rpmsoft rpsandp dprod dinflation dterm m1
