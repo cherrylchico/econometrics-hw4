@@ -17,9 +17,9 @@ where
 \subsection{}
 Using the data microsoft.csv, the resulting regression model is as follows:
 
-$$
-\widehat{RPmsoft_t} = -0.9291 + 1.3232RPsandp_t -1.5216Dprod_t + 0.4716Dinflation_t + 4.1588Dterm_t + 5.4352m1_t 
-$$
+\begin{align*}
+\widehat{RPmsoft_t} = -0.9291 + 1.3232RPsandp_t -1.5216Dprod_t \\  + 0.4716Dinflation_t + 4.1588Dterm_t + 5.4352m1_t 
+\end{align*}
 
 \begin{center}
 \fbox{
@@ -62,11 +62,35 @@ where $r$ is the value of $\beta_k$ under the null hypothesis. Thus, the distrib
 \subsection{}
 
 The $Jarque-Bera$ (JB) test can be used to check for normality of the distrubances. The JB-test statistic is given by:
-$$JB = \dfrac{n}{6} \left( sk^2 + \dfrac{(kur-3)^2}{4} \right) \quad \overset{a}{\underset{\text{under }H_0}{\sim}} \quad X^2(2)$$
-where $sk$ is the sample coefficient of the skwness of the variable, $kur$ is its sample coefficient of kurtosis, and $n$ is the sample size. Using significance of level of $\alpha = 0.01$ and the critical value $X^2_{0.01}(2) = 9.21$. The acceptance and rejection regions are in the illustration below:
+$$JB = \dfrac{n}{6} \left( sk^2 + \dfrac{(kur-3)^2}{4} \right) \quad \overset{a}{\underset{\text{under }H_0}{\sim}} \quad \chi^2(2)$$
+where $sk$ is the sample coefficient of the skewness of the variable, $kur$ is its sample coefficient of kurtosis, and $n$ is the sample size. Using significance of level of $\alpha = 0.01$ and the critical value $X^2_{0.01}(2) = 9.21$. The acceptance and rejection regions are in the illustration below:
 
 \begin{center}
 \fbox{
 \includegraphics[width=12cm]{fig/2d.png}
 }
 \end{center}
+
+A normal distribution has skewness of 0 and kurtosis of 3.  Thus, a deviation from these values can indicate a departure from normality. The corresponding hypothesis test is set-up as follows:
+$$
+H_0: SK = 0 \text{ and } KUR = 3  \quad vs \quad H_A: \text{ not } H_0
+$$
+
+where $SK$ and $KUR$ are the population coefficients of skewness and kurtosis for the disturbances, respectively. 
+
+Under normality, the mean and variance of skewness is 0 and $\frac{6}{n}$ and 3 and $\frac{24}{n}$ for kurtosis, respectively. Thus, we can see the $JB-test$ statistic is composed of mahalonobis distances for $SK$ and $KUR$. If the disturbances are normally distributed, then the $JB-test$ statistic should be small, otherwise it will have a large positive value. Therefore, the acceptance region is from 0 up to the critical value determined by the significance level.
+\subsection{}
+If the assumptions regarding the $dgp$  for conistency of $OLS$ estimator are met, then $\hat{\beta} \overset{d}{\rightarrow} \beta$. Note that $\hat{\epsilon} = y - \hat{y} =  X\beta + \epsilon - X\hat{\beta} = X(\beta - \hat{\beta}) + \epsilon$, by \textit{Continuous Mapping Theorem}, we have  $\hat{\epsilon} \overset{d}{\rightarrow} X(\beta - \beta) + \epsilon = \epsilon$. Thus, $\hat{\epsilon} \overset{d}{\rightarrow} \epsilon$.
+
+\subsection{}
+
+Using Stata, the $JB-test$ value is 1809. At $\alpha=0.01$ and degrees of freedom  = 2, the critical value is $X^2_{0.01}(2) = 9.21$. Since 1809>9.21, we reject the null hypothesis that the disturbances are normally distributed. Thus, there is evidence to suggest that the disturbances are not normally distributed.
+
+\subsection{}
+Testing again the $January$ $effect$ using asymptotic t-test, we have critical value =  $z_{0.01}$ = 2.326. Since the $t-value = 1.89 < 2.326$, we fail to reject the null hypothesis. Thus, the conclusion remains the same as in part (b) that there is no evidence to suggest the existence of January effect in the excess returns of Microsoft stock. 
+
+\subsection{}
+Yes. Because the normality assumption for the exact $t-test$ is not satisfied
+
+\subsection{}
+The $t-test$ statistic distribution has fatter tails than the standard normal distribution or the $z$ statistic. This means that at the tails, using the same significance level, the value of the $t-test$ statistic will be smaller that the $z$ statistic.
