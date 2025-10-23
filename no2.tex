@@ -80,7 +80,7 @@ where $SK$ and $KUR$ are the population coefficients of skewness and kurtosis fo
 
 Under normality, the mean and variance of skewness is 0 and $\frac{6}{n}$ and 3 and $\frac{24}{n}$ for kurtosis, respectively. Thus, we can see the $JB-test$ statistic is composed of mahalonobis distances for $SK$ and $KUR$. If the disturbances are normally distributed, then the $JB-test$ statistic should be small, otherwise it will have a large positive value. Therefore, the acceptance region is from 0 up to the critical value determined by the significance level.
 \subsection{}
-If the assumptions regarding the $dgp$  for conistency of $OLS$ estimator are met, then $\hat{\beta} \overset{p}{\rightarrow} \beta$. Note that $\hat{\epsilon} = y - \hat{y} =  X\beta + \epsilon - X\hat{\beta} = X(\beta - \hat{\beta}) + \epsilon$, by \textit{Continuous Mapping Theorem}, we have  $\hat{\epsilon} \overset{d}{\rightarrow} X(\beta - \beta) + \epsilon = \epsilon$. Thus, $\hat{\epsilon} \overset{d}{\rightarrow} \epsilon$.
+If the assumptions regarding the $dgp$  for consistency of $OLS$ estimator are met, then $\hat{\beta} \overset{p}{\rightarrow} \beta$. Note that $\hat{\epsilon} = y - \hat{y} =  X\beta + \epsilon - X\hat{\beta} = X(\beta - \hat{\beta}) + \epsilon$, by \textit{Continuous Mapping Theorem}, we have  $\hat{\epsilon} \overset{p}{\rightarrow} X(\beta - \beta) + \epsilon = \epsilon$. Thus, $\hat{\epsilon} \overset{p}{\rightarrow} \epsilon$.
 
 \subsection{}
 
@@ -90,7 +90,13 @@ Using Stata, the $JB-test$ value is 1809. At $\alpha=0.01$ and degrees of freedo
 Testing again the $January$ $effect$ using asymptotic t-test, we have critical value =  $z_{0.01}$ = 2.326. Since the $t-value = 1.89 < 2.326$, we fail to reject the null hypothesis. Thus, the conclusion remains the same as in part (b) that there is no evidence to suggest the existence of January effect in the excess returns of Microsoft stock. 
 
 \subsection{}
-Yes. Because the normality assumption for the exact $t-test$ is not satisfied
+The use of asymptotic tests is justified in this case for two reasons. Firstly, the normality assumption for exact $t-test$ is not satisfied. Secondly, we have 325 observations which seems to be large enough for asymptotic teststs. As an alternative, we may propose bootstrap, but the difference would probably be minor. 
 
 \subsection{}
-The $t-test$ statistic distribution has fatter tails than the standard normal distribution or the $z$ statistic. This means that at the tails, using the same significance level, the value of the $t-test$ statistic will be smaller that the $z$ statistic.
+The statement is correct. The exact $t-test$ relies on the $t$-distribution which posseses heavier tails than the standard normal distribution used in the asymptotic test. This property has two distinct consequences:
+\begin{enumerate}
+\item For a given significance level $\alpha$, the cirtical value from the $t_{n-1}$ distribution exceeds its standard normal counterpart ($t_{n-1,1-\alpha/2} > z_{1-\alpha/2}$). This results ina wider acceptance region for the exact test.
+\item For any computed test statistic, the $p-value$ derived from the $t_{n-1}$ distribution is larger than that from the asymptotic normal approximation. 
+\end{enumerate}
+
+Both a wider acceptance region and a larger $p-value$ mean that the exact $t-test$ requires stronger evidence against the null hypothesis to reject it, making its inference more conservative. 
