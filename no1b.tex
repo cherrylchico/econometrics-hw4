@@ -1,0 +1,97 @@
+
+The regression was re-estimated using a sample of $n = 3500$ observations generated from the same DGP:
+\[
+y_i = 10 + 0.5x_{i2} + 0.5x_{i3} + 0.5x_{i4} + \varepsilon_i, 
+\qquad \varepsilon_i \sim N(0,4^2).
+\]
+The estimated coefficients are $\hat{\beta}_2 = 0.490$, $\hat{\beta}_3 = 0.551$, and $\hat{\beta}_4 = 0.448$, 
+which remain very close to the true values $\beta_2 = \beta_3 = \beta_4 = 0.5$.
+
+\begin{enumerate}[label=(\roman*)]
+\item 
+This similarity is expected, as the OLS estimator is unbiased and consistent:
+\[
+E[\hat{\beta}] = \beta, \qquad 
+\hat{\beta} \xrightarrow{p} \beta \text{ as } n \to \infty.
+\]
+The variance of the estimator,
+\[
+\operatorname{Var}(\hat{\beta}\,|\,X) = \sigma^2 (X'X)^{-1},
+\]
+decreases with $n$ since $X'X$ increases proportionally to the sample size.  Therefore, larger $n$ reduces the sampling variability of $\hat{\beta}$.  The considerably smaller standard errors  
+($se(\hat{\beta}_2) = 0.0078$, $se(\hat{\beta}_3) = 0.0685$, and $se(\hat{\beta}_4) = 0.0680$) shows that the collinearity problem for testing decreased, but have not been totally solved. 
+
+\item
+
+The 95\% confidence intervals were recalculated for the larger sample.  
+They are substantially narrower compared with those obtained when $n = 35$.  
+For example, the interval for $\beta_2$ changes from $[0.443,\, 0.748]$ to approximately $[0.486,\, 0.514]$.  
+
+\medskip
+\noindent
+This occurs because the variance of $\hat{\beta}_k$ depends inversely on sample size:
+\[
+\operatorname{Var}(\hat{\beta}_k \,|\, X) = \sigma^2 [(X'X)^{-1}]_{kk} \propto \frac{1}{n}.
+\]
+Hence, the standard errors decrease at rate $1/\sqrt{n}$, 
+and the corresponding confidence intervals become tighter around the true parameter values.  
+
+\medskip
+\noindent
+This illustrates the \textbf{consistency} of OLS: as $n$ increases, $\hat{\beta} \xrightarrow{p} \beta$, 
+and the confidence intervals converge to the true $\beta$’s.  
+The narrowing of the intervals reflects reduced sampling uncertainty and greater estimator precision.
+
+\item
+
+The 95\% confidence region for $(\beta_3, \beta_4)$ becomes smaller when the sample size increases to $n = 3500$.  
+The shape of the region (an ellipse) remains the same, but its area decreases as the estimators become more precise.  
+
+\medskip
+\noindent
+The covariance matrix of the OLS estimator is
+\[
+\widehat{\operatorname{Var}}(\hat{\beta}) = \hat{\sigma}^2 (X'X)^{-1}.
+\]
+Since $X'X$ grows proportionally with $n$, $(X'X)^{-1}$ decreases in magnitude, 
+leading to smaller variances for $\hat{\beta}_3$ and $\hat{\beta}_4$.  
+Consequently, the confidence ellipse contracts around the true parameter values.
+
+\medskip
+\noindent
+Formally, the 95\% joint confidence region satisfies
+\[
+(\hat{\beta} - \beta)' 
+\big[\widehat{\operatorname{Var}}(\hat{\beta})\big]^{-1} 
+(\hat{\beta} - \beta) \leq c_{0.95}.
+\]
+As $\widehat{\operatorname{Var}}(\hat{\beta})$ decreases with $n$, 
+the ellipse becomes smaller.  
+This visual reduction in the region reflects higher precision and the asymptotic properties of the OLS estimator.
+
+\item
+
+The reduction in the variance of $\hat{\beta}_3$ (and $\hat{\beta}_4$) when $n$ increases 
+can be explained using the variance expression of the OLS estimator:
+\[
+\operatorname{Var}(\hat{\beta}_j \mid X) = \sigma^2 \big[(X'X)^{-1}\big]_{jj}.
+\]
+Because $X'X = \sum_{i=1}^n x_i x_i'$ scales with $n$, 
+its inverse $(X'X)^{-1}$ decreases approximately at rate $1/n$.  
+Therefore, for a given $\sigma^2$,
+\[
+\operatorname{Var}(\hat{\beta}_j \mid X) \propto \frac{\sigma^2}{n}.
+\]
+This implies that as $n$ increases, the sampling variability of $\hat{\beta}_3$ and $\hat{\beta}_4$ decreases, 
+producing smaller standard errors and tighter confidence regions.
+
+\medskip
+\noindent
+Intuitively, a larger sample provides more information about the relationship between $y$ and the regressors, 
+which improves the precision of the estimated slope coefficients.  
+Hence, the observed reduction in the size of the confidence region directly follows from the 
+$1/n$ relationship in the variance expression.
+
+
+
+\end{enumerate}
