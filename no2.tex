@@ -83,9 +83,13 @@ where $SK$ and $KUR$ are the population coefficients of skewness and kurtosis fo
 
 \medskip
 \noindent
-Under normality, the mean and variance of skewness is 0 and $\frac{6}{n}$, respectively. For kurtosis, the values are 3 and $\frac{24}{n}$, respectively. Thus, we can see that the JB-test statistic is composed of the mahalonobis distances for $SK$ and $KUR$. If the disturbances are normally distributed, then the JB-test statistic should be small. Therefore, the acceptance region is from 0 up to the critical value determined by the significance level.
+Under normality, the mean and variance of sample skewness is 0 and $\frac{6}{n}$, respectively. For sample kurtosis, the values are 3 and $\frac{24}{n}$, respectively. Thus, we can see that the JB-test statistic is composed of the mahalonobis distances for $SK$ and $KUR$. If the disturbances are normally distributed, then the JB-test statistic should be small. Therefore, the acceptance region is from 0 up to the critical value determined by the significance level.
 \subsection{}
-If the assumptions regarding the $dgp$  for consistency of $OLS$ estimator are met, then $\hat{\beta} \overset{p}{\rightarrow} \beta$. Note that $\hat{\epsilon} = y - \hat{y} =  X\beta + \epsilon - X\hat{\beta} = X(\beta - \hat{\beta}) + \epsilon$, by \textit{Continuous Mapping Theorem}, we have  $\hat{\epsilon} \overset{p}{\rightarrow} X(\beta - \beta) + \epsilon = \epsilon$. Thus, $\hat{\epsilon} \overset{p}{\rightarrow} \epsilon$.
+If the assumptions regarding the $dgp$  for consistency of $OLS$ estimator are met, then $\hat{\beta} \overset{p}{\rightarrow} \beta$. Note that $\hat{\epsilon} = y - \hat{y} =  X\beta + \epsilon - X\hat{\beta} = X(\beta - \hat{\beta}) + \epsilon$, by \textit{Slutsky's Theorem}, we have  $\hat{\epsilon} \overset{p}{\rightarrow} X(\beta - \beta) + \epsilon = \epsilon$. Thus, $\hat{\epsilon} \overset{p}{\rightarrow} \epsilon$. It also follows that the $\hat{SK}$ and $\hat{KUR}$ are consistent estimators of $SK$ and $KUR$ respectively.
+
+\bigskip
+\noindent
+In addition, from the $Central$ $Limit$ $Theorem$, $\sqrt{n}\frac{\hat{SK}}{\sqrt{6/n}} \overset{a}{\sim} N(0,1)$ and $\sqrt{n}\frac{\hat{KUR} - 3}{\sqrt{24/n}} \overset{a}{\sim} N(0,1)$. Because the JB-test is the sum of the squared of standardized normal, then it follows that it is asymptotically chi-squared. 
 
 \subsection{}
 
