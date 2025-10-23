@@ -38,25 +38,27 @@ $$
 where $\beta_6$ is the estimated coefficient for the regressor $m1$ which is a 1 for January and 0 otherwise. 
 
 \medskip 
-
-From there OLS regression results, we have $t-value = 1.89$. At $\alpha=1\%$ and degrees of freedom  $n-K = 324 - 6 = 298$, the $t-critical_{0.01}(298) = 2.339$. Because $t-value < t-critical$, we fail to reject the null hypothesis. That is, the data does not provide evidence to reject the claim that there is no January effect in the excess returns of Microsoft stock.
+\noindent
+From the OLS regression results, we have $t-value = 1.89$. At $\alpha=1\%$ and degrees of freedom  $n-K = 324 - 6 = 298$, the $t-critical_{0.01}(298) = 2.339$. Because $t-value < t-critical$, we fail to reject the null hypothesis. That is, the data does not provide evidence to reject the claim that there is no January effect in the excess returns of Microsoft stock.
 
 \subsection{}
 
 The starting point for use of the $t-test$ statistic is the (conditional) sampling distribution of the $\hat{\beta}_k$ which is derived from the classifical assumptions plus normality. Thus, the assumptions other than normality are:
 
 \begin{enumerate}[label=(A\arabic*)]
-    \item Linearity: The regression model has been correctly specified such that $y = X\beta + \epsilon$ 
+    \item Linearity: The regression model has been correctly specified such that $y = X\beta + \epsilon$ .
     \item Strict exogeneity: The error term has an expected value of zero given any values of the regressors in all time periods, i.e. $E(\epsilon_i | X) = 0$ for all $i$.
     \item Homoskedasticity: The variance of the error term is constant across all levels of the regressors, i.e. $Var(\epsilon_i | X) = \sigma^2$ for all $i$.
     \item Disturbances are uncorrelated: The error terms are uncorrelated across observations,
     i.e. \\ $Cov(\epsilon_i, \epsilon_j | X) = 0$ for all $i \neq j$.
 \end{enumerate} 
 
+\noindent
 In addition, to derive the distribution of the $t-test$ statistic, we used 
 
 $$\dfrac{\hat{\beta_k} - r}{\sqrt{\sigma^2(X'X)^{-1}_{kk}}} \quad \underset{\text{under }H_0}{\sim} \quad  N(0,1)$$
 
+\noindent
 where $r$ is the value of $\beta_k$ under the null hypothesis. Thus, the distribution of the $t-test$ statistic is derived under the assumption that $H_0$ is true.
 
 \subsection{}
@@ -71,32 +73,35 @@ where $sk$ is the sample coefficient of the skewness of the variable, $kur$ is i
 }
 \end{center}
 
-A normal distribution has skewness of 0 and kurtosis of 3.  Thus, a deviation from these values can indicate a departure from normality. The corresponding hypothesis test is set-up as follows:
+A normal distribution has skewness of 0 and kurtosis of 3.  A deviation from these values can indicate a departure from normality. Therefore, the corresponding hypothesis test is as follows:
 $$
 H_0: SK = 0 \text{ and } KUR = 3  \quad vs \quad H_A: \text{ not } H_0
 $$
 
+\noindent
 where $SK$ and $KUR$ are the population coefficients of skewness and kurtosis for the disturbances, respectively. 
 
-Under normality, the mean and variance of skewness is 0 and $\frac{6}{n}$ and 3 and $\frac{24}{n}$ for kurtosis, respectively. Thus, we can see the $JB-test$ statistic is composed of mahalonobis distances for $SK$ and $KUR$. If the disturbances are normally distributed, then the $JB-test$ statistic should be small, otherwise it will have a large positive value. Therefore, the acceptance region is from 0 up to the critical value determined by the significance level.
+\medskip
+\noindent
+Under normality, the mean and variance of skewness is 0 and $\frac{6}{n}$, respectively. For kurtosis, the values are 3 and $\frac{24}{n}$, respectively. Thus, we can see that the JB-test statistic is composed of the mahalonobis distances for $SK$ and $KUR$. If the disturbances are normally distributed, then the JB-test statistic should be small. Therefore, the acceptance region is from 0 up to the critical value determined by the significance level.
 \subsection{}
 If the assumptions regarding the $dgp$  for consistency of $OLS$ estimator are met, then $\hat{\beta} \overset{p}{\rightarrow} \beta$. Note that $\hat{\epsilon} = y - \hat{y} =  X\beta + \epsilon - X\hat{\beta} = X(\beta - \hat{\beta}) + \epsilon$, by \textit{Continuous Mapping Theorem}, we have  $\hat{\epsilon} \overset{p}{\rightarrow} X(\beta - \beta) + \epsilon = \epsilon$. Thus, $\hat{\epsilon} \overset{p}{\rightarrow} \epsilon$.
 
 \subsection{}
 
-Using Stata, the $JB-test$ value is 1809. At $\alpha=0.01$ and degrees of freedom  = 2, the critical value is $X^2_{0.01}(2) = 9.21$. Since 1809>9.21, we reject the null hypothesis that the disturbances are normally distributed. Thus, there is evidence to suggest that the disturbances are not normally distributed.
+Using Stata, the JB-test value is 1809. At $\alpha=0.01$ and degrees of freedom  = 2, the critical value is $X^2_{0.01}(2) = 9.21$. Since 1809>9.21, we reject the null hypothesis that the disturbances are normally distributed. Thus, there is evidence to suggest that the disturbances are not normally distributed.
 
 \subsection{}
-Testing again the $January$ $effect$ using asymptotic t-test, we have critical value =  $z_{0.01}$ = 2.326. Since the $t-value = 1.89 < 2.326$, we fail to reject the null hypothesis. Thus, the conclusion remains the same as in part (b) that there is no evidence to suggest the existence of January effect in the excess returns of Microsoft stock. 
+Testing again the $January$ $effect$ using asymptotic t-test, we have critical value  $z_{0.01}$ = 2.326. Since the $t-value = 1.89 < 2.326$, we fail to reject the null hypothesis. Thus, the conclusion remains the same as in part (b) that there is no evidence to suggest the existence of January effect in the excess returns of Microsoft stock. 
 
 \subsection{}
-The use of asymptotic tests is justified in this case for two reasons. Firstly, the normality assumption for exact $t-test$ is not satisfied. Secondly, we have 325 observations which seems to be large enough for asymptotic teststs. As an alternative, we may propose bootstrap, but the difference would probably be minor. 
+The use of asymptotic tests is justified in this case for two reasons. Firstly, the normality assumption for the exact $t-test$ is not satisfied. Secondly, we have 325 observations which seems to be large enough for asymptotic teststs. As an alternative, we may propose bootstrap, but the difference would probably be minor. 
 
 \subsection{}
 The statement is correct. The exact $t-test$ relies on the $t$-distribution which posseses heavier tails than the standard normal distribution used in the asymptotic test. This property has two distinct consequences:
 \begin{enumerate}
-\item For a given significance level $\alpha$, the cirtical value from the $t_{n-1}$ distribution exceeds its standard normal counterpart ($t_{n-1,1-\alpha/2} > z_{1-\alpha/2}$). This results ina wider acceptance region for the exact test.
+\item For a given significance level $\alpha$, the cirtical value from the $t_{n-1}$ distribution exceeds its standard normal counterpart ($t_{1-\alpha/2}(n-1) > z_{1-\alpha/2}$). This results in a wider acceptance region for the exact test.
 \item For any computed test statistic, the $p-value$ derived from the $t_{n-1}$ distribution is larger than that from the asymptotic normal approximation. 
 \end{enumerate}
 
-Both a wider acceptance region and a larger $p-value$ mean that the exact $t-test$ requires stronger evidence against the null hypothesis to reject it, making its inference more conservative. 
+\noindent Both a wider acceptance region and a larger $p-value$ mean that the exact $t-test$ requires stronger evidence against the null hypothesis to reject it, making its inference more conservative. 

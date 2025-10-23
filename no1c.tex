@@ -1,6 +1,9 @@
+Using the original script generating 35 observations, the script was modified such that $x_{i3} + 2x_{i4} = 0$.
+
 \begin{enumerate}[label=(\roman*)]
 
-\item 
+\item The output of the new script is as follows:
+
 \noindent\textbf{R code}
 
 \begin{verbatim}
@@ -49,9 +52,7 @@ This is because after imposing $x_{i3} + 2x_{i4} = 0$, we have a perfect linear 
 x_4 = -\tfrac{1}{2}x_3.
 \]
 The regressors $x_3$ and $x_4$ are perfectly collinear, so the matrix $X'X$ loses rank 
-and becomes non-invertible.
-
-The OLS estimator satisfies the normal equations:
+and becomes non-invertible. The OLS estimator satisfies the normal equations:
 \[
 X'X\hat{\beta} = X'y,
 \]
