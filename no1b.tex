@@ -21,6 +21,30 @@ The variance of the estimator,
 decreases with $n$ since $X'X$ increases proportionally to the sample size.  Therefore, larger $n$ reduces the sampling variability of $\hat{\beta}$.  The considerably smaller standard errors  
 ($se(\hat{\beta}_2) = 0.0078$, $se(\hat{\beta}_3) = 0.0685$, and $se(\hat{\beta}_4) = 0.0680$) shows that the collinearity problem for testing decreased, but have not been totally solved. 
 
+\medskip
+\textbf{R output:}
+\begin{verbatim}
+Call:
+lm(formula = y ~ x2 + x3 + x4, data = data33)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.2997  -2.5950  -0.0316   2.5728  14.3972 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 10.229438   0.181098  56.486  < 2e-16 ***
+x2           0.490229   0.007763  63.151  < 2e-16 ***
+x3           0.551196   0.068484   8.048 1.14e-15 ***
+x4           0.447534   0.067977   6.584 5.28e-11 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.952 on 3496 degrees of freedom
+Multiple R-squared: 0.8519,  Adjusted R-squared: 0.8517 
+F-statistic: 6702 on 3 and 3496 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
 \item
 
 The 95\% confidence intervals were recalculated for the larger sample.  
