@@ -1,0 +1,93 @@
+\begin{enumerate}[label=(\roman*)]
+
+\item 
+\noindent\textbf{R code}
+
+\begin{verbatim}
+set.seed(1234)
+n <- 35
+
+x2 <- runif(n, 0, 30)
+x3 <- runif(n, 0, 30)
+x4 <- -x3 / 2   # condition: x3 + 2x4 = 0
+y  <- 10 + 0.5*x2 + 0.5*x3 + 0.5*x4 + rnorm(n, 0, 4)
+
+data_c <- data.frame(y, x2, x3, x4)
+model_c <- lm(y ~ x2 + x3 + x4, data = data_c)
+summary(model_c)
+\end{verbatim}
+
+
+\begin{verbatim}
+Call:
+lm(formula = y ~ x2 + x3 + x4, data = data_c)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-8.027 -3.281 -1.063  2.667 10.555 
+
+Coefficients: (1 not defined because of singularities)
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 10.18380    2.20069   4.628 5.85e-05 ***
+x2           0.46971    0.09993   4.700 4.74e-05 ***
+x3           0.19849    0.10150   1.956   0.0593 .  
+x4                NA         NA      NA       NA    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.701 on 32 degrees of freedom
+Multiple R-squared:  0.428,    Adjusted R-squared:  0.3923 
+F-statistic: 11.97 on 2 and 32 DF,  p-value: 0.0001312
+\end{verbatim}
+
+\item
+
+From the regression output, we obtained one reported estimate for $\hat{\beta}_3$ 
+and none for $\hat{\beta}_4$, but in reality, there is no unique solution for either parameter. 
+This is because after imposing $x_{i3} + 2x_{i4} = 0$, we have a perfect linear relation:
+\[
+x_4 = -\tfrac{1}{2}x_3.
+\]
+The regressors $x_3$ and $x_4$ are perfectly collinear, so the matrix $X'X$ loses rank 
+and becomes non-invertible.
+
+The OLS estimator satisfies the normal equations:
+\[
+X'X\hat{\beta} = X'y,
+\]
+where $\hat{\beta} = (\hat{\beta}_2, \hat{\beta}_3, \hat{\beta}_4)'$.
+
+Partitioning $X$ as $X = [X_2 \; X_3 \; X_4]$, the normal equations for $\beta_3$ and $\beta_4$ are:
+\[
+\begin{cases}
+X_3'(y - X_2\hat{\beta}_2 - X_3\hat{\beta}_3 - X_4\hat{\beta}_4) = 0, \\
+X_4'(y - X_2\hat{\beta}_2 - X_3\hat{\beta}_3 - X_4\hat{\beta}_4) = 0.
+\end{cases}
+\]
+Substituting $X_4 = -\tfrac{1}{2}X_3$, both equations become identical:
+\[
+X_3'(y - X_2\hat{\beta}_2 - X_3(\hat{\beta}_3 - \tfrac{1}{2}\hat{\beta}_4)) = 0.
+\]
+Hence, the system provides only one independent equation for two unknowns, $\hat{\beta}_3$ and $\hat{\beta}_4$.
+
+This implies that only the linear combination
+\[
+\gamma = \hat{\beta}_3 - \tfrac{1}{2}\hat{\beta}_4
+\]
+is identified, since
+\[
+\hat{y} = X_2\hat{\beta}_2 + X_3\gamma.
+\]
+Therefore, any pair $(\hat{\beta}_3, \hat{\beta}_4)$ satisfying
+\[
+\hat{\beta}_3 - \tfrac{1}{2}\hat{\beta}_4 = \gamma
+\]
+yields the same fitted values and the same residual sum of squares. 
+There are infinitely many such pairs, so the OLS solution is not unique.
+
+In conclusion, the model produces an infinite number of estimates for $(\beta_3,\beta_4)$ 
+because perfect collinearity makes $X'X$ singular and the normal equations underdetermined.
+
+\end{enumerate}
+
+
