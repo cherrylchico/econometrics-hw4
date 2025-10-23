@@ -1,0 +1,3 @@
+aux_files/*
+!aux_files/*.pdf
+~*
